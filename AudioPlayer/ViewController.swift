@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         
         player.play()
         //scrubber to move as music is playing
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateScrubber), userInfo: nil, repeats: true)
         
     }
     
@@ -54,9 +55,16 @@ class ViewController: UIViewController {
     
     }
     
+    
+    @IBAction func rewindSkip15Seconds(_ sender: Any) {
+        
+    }
+    
+    
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         
         player.pause()
+        timer.invalidate()
     
     }
     
@@ -77,5 +85,10 @@ class ViewController: UIViewController {
         player.currentTime = TimeInterval(scrubber.value)
     
     }
+    
+    @IBAction func skipForward15Seconds(_ sender: Any) {
+    
+    }
+    
 }
 
