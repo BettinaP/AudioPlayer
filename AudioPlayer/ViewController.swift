@@ -13,8 +13,9 @@ class ViewController: UIViewController {
 
     var player = AVAudioPlayer()
     @IBOutlet weak var slider: UISlider!
-    
     @IBOutlet weak var scrubber: UISlider!
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
         do {
             
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
+            scrubber.maximumValue = Float(player.duration)
             
         } catch {
         
@@ -64,6 +66,8 @@ class ViewController: UIViewController {
     
     @IBAction func scrubberMoved(_ sender: UISlider) {
         
+        player.currentTime = TimeInterval(scrubber.value)
+    
     }
 }
 
