@@ -12,6 +12,7 @@ import AVFoundation
 class ViewController: UIViewController {
 
     var player = AVAudioPlayer()
+    var timer = Timer()
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var scrubber: UISlider!
     
@@ -27,8 +28,8 @@ class ViewController: UIViewController {
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
             scrubber.maximumValue = Float(player.duration)
             
-        } catch {
-        
+        } catch let error as NSError {
+            print("error: \(error)")
             //process any errors
         
         }
@@ -43,7 +44,14 @@ class ViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: UIButton) {
         
         player.play()
+        //scrubber to move as music is playing
         
+    }
+    
+    @objc func updateScrubber() {
+        
+        scrubber.value = Float(player.currentTime)
+    
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
