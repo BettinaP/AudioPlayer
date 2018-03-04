@@ -57,7 +57,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func rewindSkip15Seconds(_ sender: Any) {
-        
+        player.currentTime -= 15
+        scrubber.value = Float(player.currentTime)
     }
     
     
@@ -87,7 +88,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func skipForward15Seconds(_ sender: Any) {
-    
+        player.currentTime += 15
+        scrubber.value = Float(player.currentTime)
     }
     
 }
